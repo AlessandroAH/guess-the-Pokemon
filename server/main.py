@@ -17,11 +17,11 @@ def start_quiz():
 @app.post('/invia')
 def submit_answer():
     answer = request.json.get('answer')
-    correct, question = quiz.submit_answer(answer)
+    correct, question, options = quiz.submit_answer(answer)
     if correct:
-        return jsonify({"correct": True, "question": question, "score": quiz.score, "turns": quiz.turns})
+        return jsonify({"correct": True, "question": question, "options":options, "score": quiz.score, "turns": quiz.turns})
     else:
-        return jsonify({"correct": False, "question": question, "score": quiz.score, "turns": quiz.turns})
+        return jsonify({"correct": False, "question": question, "options":options, "score": quiz.score, "turns": quiz.turns})
 
 if __name__ == '__main__':
      app.run(host='192.168.228.220', port=8000, debug=True)

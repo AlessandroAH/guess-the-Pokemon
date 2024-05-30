@@ -8,6 +8,7 @@ class Quiz:
         self.correct_answer = None
         self.score = 0
         self.turns = 0
+        self.question = "Qual è questo Pokémon?"
 
     # Funzione per ottenere la prossima domanda
     def get_next_question(self):
@@ -18,8 +19,7 @@ class Quiz:
                 options = self.pokemon_quiz.generate_options(self.correct_answer,self.AllPokemon)
                 self.current_question += 1
                 self.turns += 1
-                question = "Qual è questo Pokémon?"
-                return question, options
+                return self.question, options
         else:
             return None
     
@@ -30,7 +30,8 @@ class Quiz:
             correct = True
         else:
             correct = False
-        return correct, self.get_next_question()
+        question , options = self.get_next_question()
+        return correct, question , options
     
     #Metodo per resettare il quiz
     def reset(self):
