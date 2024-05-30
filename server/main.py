@@ -21,10 +21,9 @@ def start_quiz():
 def submit_answer():
     answer = request.json.get('answer')
     correct, question, options, image_url = quiz.submit_answer(answer)
-    if correct:
-        return jsonify({"correct": True, "question": question, "options":options, "image_url": image_url, "score": quiz.score, "turns": quiz.turns})
-    else:
-        return jsonify({"correct": False, "question": question, "options":options, "image_url": image_url, "score": quiz.score, "turns": quiz.turns})
+    if quiz.turns == 10:
+        return jsonify({"correct": correct, "finished": True, "score": quiz.score, "turns": quiz.turns})
+    return jsonify({"correct": correct, "question": question, "options": options, "image_url": image_url, "score": quiz.score, "turns": quiz.turns})
 
 @app.post('/restart')
 def restartQuiz():

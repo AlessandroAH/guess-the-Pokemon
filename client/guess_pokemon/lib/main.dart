@@ -39,12 +39,14 @@ class _MyHomePageState extends State<MyHomePage> {
   int _turns = 0;
   bool _isLoading = false;
   String _message = '';
+  bool _finished = false;
 
   void _startQuiz() async {
     if (mounted) {
       setState(() {
         _isLoading = true;
         _message = '';
+        _finished = false;
       });
     }
 
@@ -76,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
         _score = 0;
         _turns = 0;
         _message = '';
+        _finished = false;
       });
       apiService.restartQuiz();
       _startQuiz();
@@ -97,9 +100,16 @@ class _MyHomePageState extends State<MyHomePage> {
           _score = data['score'];
           _turns = data['turns'];
           _message = data['correct'] ? 'Correct!' : 'Incorrect!';
-          _question = data['question'] ?? '';
-          _options = List<String>.from(data['options'] ?? []);
-          _imageUrl = data['image_url'] ?? '';
+          if (data['finished'] == true) {
+            _finished = true;
+            _question = '';
+            _options = [];
+            _imageUrl = '';
+          } else {
+            _question = data['question'] ?? '';
+            _options = List<String>.from(data['options'] ?? []);
+            _imageUrl = data['image_url'] ?? '';
+          }
           _isLoading = false;
         });
       }
@@ -133,7 +143,24 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  if (_question.isNotEmpty)
+                  if (_finished)
+                    Column(
+                      children: [
+                        Text(
+                          'Finito il quiz!',
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
+                        Text(
+                          'Score: $_score',
+                          style: Theme.of(context).textTheme.headline5,
+                        ),
+                        Text(
+                          'Turns: $_turns',
+                          style: Theme.of(context).textTheme.headline5,
+                        ),
+                      ],
+                    )
+                  else if (_question.isNotEmpty)
                     Column(
                       children: [
                         if (_imageUrl.isNotEmpty)
@@ -151,14 +178,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   if (_message.isNotEmpty) Text(_message),
                   const SizedBox(height: 20),
-                  Text(
-                    'Score: $_score',
-                    style: Theme.of(context).textTheme.headline5,
-                  ),
-                  Text(
-                    'Turns: $_turns',
-                    style: Theme.of(context).textTheme.headline5,
-                  ),
+                  if (!_finished)
+                    Column(
+                      children: [
+                        Text(
+                          'Score: $_score',
+                          style: Theme.of(context).textTheme.headline5,
+                        ),
+                        Text(
+                          'Turns: $_turns',
+                          style: Theme.of(context).textTheme.headline5,
+                        ),
+                      ],
+                    ),
                 ],
               ),
             ),

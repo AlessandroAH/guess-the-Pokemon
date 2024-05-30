@@ -12,7 +12,7 @@ class Quiz:
 
     # Funzione per ottenere la prossima domanda
     def get_next_question(self):
-        if self.current_question < 10:
+        if self.current_question <= 10:
             pokemon = self.pokemon_quiz.get_random_pokemon()
             if pokemon:
                 self.correct_answer = pokemon
