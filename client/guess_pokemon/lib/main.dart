@@ -40,47 +40,62 @@ class _MyHomePageState extends State<MyHomePage> {
   String _message = '';
 
   void _startQuiz() async {
-    setState(() {
-      _isLoading = true;
-      _message = '';
-    });
+    if (mounted) {
+      setState(() {
+        _isLoading = true;
+        _message = '';
+      });
+    }
 
     try {
       final data = await apiService.startQuiz();
-      setState(() {
-        _question = data['question'];
-        _options = List<String>.from(data['question']);
-        _isLoading = false;
-      });
+      print('Quiz started: $data');
+      if (mounted) {
+        setState(() {
+          _question = data['question'];
+          _options = List<String>.from(data['options']);
+          _isLoading = false;
+        });
+      }
     } catch (e) {
-      setState(() {
-        _isLoading = false;
-        _message = 'Failed to load question';
-      });
+      print('Failed to start quiz: $e');
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+          _message = 'Failed to load question';
+        });
+      }
     }
   }
 
   void _submitAnswer(String answer) async {
-    setState(() {
-      _isLoading = true;
-      _message = '';
-    });
+    if (mounted) {
+      setState(() {
+        _isLoading = true;
+        _message = '';
+      });
+    }
 
     try {
       final data = await apiService.submitAnswer(answer);
-      setState(() {
-        _score = data['score'];
-        _turns = data['turns'];
-        _message = data['correct'] ? 'Correct!' : 'Incorrect!';
-        _question = data['question'] ?? '';
-        _options = List<String>.from(data['question'] ?? []);
-        _isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _score = data['score'];
+          _turns = data['turns'];
+          _message = data['correct'] ? 'Correct!' : 'Incorrect!';
+          _question = data['question'] ?? '';
+          _options = List<String>.from(data['options'] ?? []);
+          _isLoading = false;
+        });
+      }
     } catch (e) {
-      setState(() {
-        _isLoading = false;
-        _message = 'Failed to submit answer';
-      });
+      print('Failed to submit answer: $e');
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+          _message = 'Failed to submit answer';
+        });
+      }
     }
   }
 

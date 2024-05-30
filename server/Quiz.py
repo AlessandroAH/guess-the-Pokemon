@@ -18,7 +18,8 @@ class Quiz:
                 options = self.pokemon_quiz.generate_options(self.correct_answer,self.AllPokemon)
                 self.current_question += 1
                 self.turns += 1
-                return options
+                question = "Qual è questo Pokémon?"
+                return question, options
         else:
             return None
     
