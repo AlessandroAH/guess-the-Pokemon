@@ -34,6 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final ApiService apiService = ApiService();
   List<String> _options = [];
   String _question = '';
+  String _imageUrl = '';
   int _score = 0;
   int _turns = 0;
   bool _isLoading = false;
@@ -54,6 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
         setState(() {
           _question = data['question'];
           _options = List<String>.from(data['options']);
+          _imageUrl = data['image_url'];
           _isLoading = false;
         });
       }
@@ -85,6 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
           _message = data['correct'] ? 'Correct!' : 'Incorrect!';
           _question = data['question'] ?? '';
           _options = List<String>.from(data['options'] ?? []);
+          _imageUrl = data['image_url'] ?? '';
           _isLoading = false;
         });
       }
@@ -121,6 +124,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   if (_question.isNotEmpty)
                     Column(
                       children: [
+                        if (_imageUrl.isNotEmpty)
+                          Image.network(_imageUrl, height: 200, width: 200),
                         Text(
                           'Choose the correct Pokémon:',
                           style: Theme.of(context).textTheme.headline6,

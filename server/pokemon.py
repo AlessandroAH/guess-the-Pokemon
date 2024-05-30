@@ -48,7 +48,10 @@ class PokemonQuiz:
             response = self.session.get(f"https://pokeapi.co/api/v2/pokemon/{pokemon_id}", timeout=20, verify=False)
             response.raise_for_status()
             pokemon = response.json()
-            return pokemon['name']
+            return {
+                'name': pokemon['name'],
+                'image_url': pokemon['sprites']['front_default']
+            }
         except requests.exceptions.RequestException as e:
             print(f"Error fetching random Pokémon: {e}")
             return None
@@ -64,7 +67,7 @@ class PokemonQuiz:
             return []
 
     def generate_options(self, correct_pokemon, pokemon_list):
-        options = [correct_pokemon]
+        options = [correct_pokemon['name']]
         while len(options) < 3:
             option = random.choice(pokemon_list)
             if option not in options:
