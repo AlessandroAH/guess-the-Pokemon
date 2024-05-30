@@ -33,6 +33,14 @@ class ApiService {
 
   // Metodo per ricominciare il quiz
   Future<void> restartQuiz() async {
-    await http.post(Uri.parse('$baseUrl/restart'));
+    final response = await http.post(Uri.parse('$baseUrl/restart'));
+
+    if (response.statusCode == 200) {
+      // Se il server restituisce una risposta OK, allora possiamo fare qualcosa
+      print('Quiz riavviato con successo');
+    } else {
+      // Se il server restituisce una risposta non OK, allora lanciamo un'eccezione
+      throw Exception('Failed to restart quiz');
+    }
   }
 }

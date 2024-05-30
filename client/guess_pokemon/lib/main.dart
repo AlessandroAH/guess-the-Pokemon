@@ -164,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Column(
                       children: [
                         if (_imageUrl.isNotEmpty)
-                          Image.network(_imageUrl, height: 200, width: 200),
+                          Image.network(_imageUrl, height: 220, width: 220),    //Per modificare la grandezza dell'immagine
                         Text(
                           'Choose the correct Pokémon:',
                           style: Theme.of(context).textTheme.headline6,
