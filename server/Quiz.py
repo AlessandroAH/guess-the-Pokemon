@@ -18,7 +18,7 @@ class Quiz:
                 self.correct_answer = pokemon
                 options = self.pokemon_quiz.generate_options(self.correct_answer,self.AllPokemon)
                 self.current_question += 1
-                self.turns += 1
+                #self.turns += 1
                 return self.question, options , pokemon['image_url']
         else:
             return None
@@ -30,6 +30,7 @@ class Quiz:
             correct = True
         else:
             correct = False
+        self.turns += 1
         question , options, image_url  = self.get_next_question()
         return correct, question , options , image_url 
     

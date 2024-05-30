@@ -26,5 +26,9 @@ def submit_answer():
     else:
         return jsonify({"correct": False, "question": question, "options":options, "image_url": image_url, "score": quiz.score, "turns": quiz.turns})
 
+@app.post('/restart')
+def restartQuiz():
+    quiz.reset()
+
 if __name__ == '__main__':
-     app.run(host='192.168.91.220', port=8000, debug=True)
+     app.run(host='192.168.1.27', port=8000, debug=True)

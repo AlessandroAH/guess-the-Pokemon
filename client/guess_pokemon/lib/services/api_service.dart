@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ApiService {
-  final String baseUrl = 'http://192.168.91.220:8000';
+  final String baseUrl = 'http://192.168.1.27:8000';
 
   // Metodo per iniziare il quiz
   Future<Map<String, dynamic>> startQuiz() async {
@@ -29,5 +29,10 @@ class ApiService {
     } else {
       throw Exception('Failed to submit answer');
     }
+  }
+
+  // Metodo per ricominciare il quiz
+  Future<void> restartQuiz() async {
+    await http.post(Uri.parse('$baseUrl/restart'));
   }
 }

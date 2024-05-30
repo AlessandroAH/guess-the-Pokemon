@@ -70,6 +70,18 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  void _restartQuiz() {
+    if (mounted) {
+      setState(() {
+        _score = 0;
+        _turns = 0;
+        _message = '';
+      });
+      apiService.restartQuiz();
+      _startQuiz();
+    }
+  }
+
   void _submitAnswer(String answer) async {
     if (mounted) {
       setState(() {
@@ -151,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _startQuiz,
+        onPressed: _restartQuiz,
         tooltip: 'Restart Quiz',
         child: const Icon(Icons.refresh),
       ),
