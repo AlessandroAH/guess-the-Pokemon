@@ -24,18 +24,19 @@ Questo progetto è un gioco interattivo chiamato "Guess the Pokemon" in cui i gi
 
 ## Istruzioni per l'esecuzione
 
-1. Aprire il terminale o la finestra del prompt dei comandi.
-2. Navigare nella cartella "Guess the Pokemon".
-3. Eseguire il seguente comando per avviare il gioco:
+1. Modificare l'indirizzo IP nel file client `flutter api_service.dart` e nel file server `main.py`.
+2. Aprire il terminale o la finestra del prompt dei comandi.
+3. Navigare nella cartella "Guess the Pokemon".
+4. Eseguire il seguente comando per avviare il gioco:
 
     ```shell
     python guess_the_pokemon.py
     ```
 
-4. Per eseguire l'applicazione client, navigare nella cartella `client/guess_pokemon` e eseguire il comando:
+5. Per eseguire l'applicazione client, navigare nella cartella `client/guess_pokemon` e eseguire il comando:
 
     ```shell
     flutter run
     ```
 
-5. Per eseguire il server, navigare nella cartella `server` e seguire le istruzioni nel [README](server/README.md) di quella cartella.
+6. Per eseguire il server, navigare nella cartella `server` e seguire le istruzioni nel [README](server/README.md) di quella cartella.

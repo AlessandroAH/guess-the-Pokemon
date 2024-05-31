@@ -32,7 +32,8 @@ def restartQuiz():
     return 'Quiz riavviato', 200  # Ritorna un messaggio di conferma
 
 if __name__ == '__main__':
-    app.run(host='192.168.1.27', port=8000, debug=True)  # Avvia l'applicazione Flask
+    #Inserisci l'indirizzo IP del tuo PC
+    app.run(host='xxx.xxx.xxx.xxx', port=8000, debug=True)  # Avvia l'applicazione Flask
 
 # Nota sulla rete: Assicurati che il tuo PC e il tuo telefono siano sulla stessa rete.
 # Se stai cercando di connetterti attraverso Internet, potrebbe essere necessario configurare il port forwarding sul tuo router.

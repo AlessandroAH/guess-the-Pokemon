@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ApiService {
-  final String baseUrl = 'http://192.168.1.27:8000';
+  final String baseUrl = 'http://xxx.xxx.xxx.xxx:8000';  //inserisci il tuo indirizzo IP
 
   // Metodo per iniziare il quiz
   Future<Map<String, dynamic>> startQuiz() async {
