@@ -17,13 +17,10 @@ Questo progetto è un gioco interattivo chiamato "Guess the Pokemon" in cui i gi
 ## Istruzioni per l'installazione
 
 1. Clonare o scaricare la cartella "Guess the Pokemon" sul proprio computer.
-2. Assicurarsi di avere Python 3.7 o una versione successiva installata sul proprio sistema.
-3. Installare la libreria grafica pygame eseguendo il seguente comando:
 
-    ```shell
-    pip install pygame
-    ```
-4. Installare Flutter SDK seguendo le istruzioni fornite qui.
+2. Assicurarsi di avere Python 3.7 o una versione successiva installata sul proprio sistema.
+
+3. Installare Flutter SDK seguendo le istruzioni fornite [qui](https://docs.flutter.dev/get-started/install) per scaricare e installare Flutter SDK sul tuo sistema.
 
 ## Istruzioni per l'esecuzione
 
@@ -34,12 +31,11 @@ Questo progetto è un gioco interattivo chiamato "Guess the Pokemon" in cui i gi
     ```shell
     python guess_the_pokemon.py
     ```
-4. **Installare Flutter SDK**: Seguire le istruzioni fornite [qui](https://docs.flutter.dev get-started/install) per scaricare e installare Flutter SDK sul tuo sistema.
+
+4. Per eseguire l'applicazione client, navigare nella cartella `client/guess_pokemon` e eseguire il comando:
 
     ```shell
     flutter run
     ```
-## Licenza
 
-Questo progetto è concesso in licenza con [MIT License](LICENSE).
-
+5. Per eseguire il server, navigare nella cartella `server` e seguire le istruzioni nel [README](server/README.md) di quella cartella.

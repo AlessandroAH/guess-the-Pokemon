@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ApiService {
-  final String baseUrl = 'http://172.22.169.183:8000';
+  final String baseUrl = 'http://192.168.1.27:8000';
 
   // Metodo per iniziare il quiz
   Future<Map<String, dynamic>> startQuiz() async {
@@ -36,10 +36,8 @@ class ApiService {
     final response = await http.post(Uri.parse('$baseUrl/restart'));
 
     if (response.statusCode == 200) {
-      // Se il server restituisce una risposta OK, allora possiamo fare qualcosa
       print('Quiz riavviato con successo');
     } else {
-      // Se il server restituisce una risposta non OK, allora lanciamo un'eccezione
       throw Exception('Failed to restart quiz');
     }
   }
